@@ -1,0 +1,17 @@
+<div class="tree-node" [class.deleted]="node().isDeleted">
+  <div class="node-content" (click)="toggleNode()">
+    @if (hasChildren()) {
+      <span class="arrow">
+        {{ isExpanded() ? "▲" : "▼" }}
+      </span>
+    }
+    <span class="node-text">{{ node().id }} - {{ node().title }}</span>
+  </div>
+  @if (isExpanded() && hasChildren()) {
+    <div class="children">
+      @for (child of node().children; track child) {
+        <app-tree-view [node]="child"></app-tree-view>
+      }
+    </div>
+  }
+</div>
